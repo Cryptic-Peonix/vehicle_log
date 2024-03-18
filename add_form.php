@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-/** Connor Clark
+/** Skyla Clark
  * 3/18/2024
  * add_form.php
  * Page to add entries into a table.

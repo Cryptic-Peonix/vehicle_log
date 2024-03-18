@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-Connor Clark
+Skyla Clark
 3/18/2024
 table_viewer.php
 The table viewer. The end user selects a table from the drop down list and the info

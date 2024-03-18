@@ -1,5 +1,5 @@
 <?php
-/** Connor Clark
+/** Skyla Clark
  * 3/18/2024
  * queries.php
  * This file stores all the functions for database queries.
