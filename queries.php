@@ -35,6 +35,26 @@
     $statement->closeCursor();
  }
 
+ function add_maintenance_entry(int $id, int $typeID, int $vehicleID, string $maintenacneVendor, string $desc, string $vendorAddress, float $cost, string $date) {
+    global $db;
+    $query = 'INSERT INTO maintenance
+        VALUES (:id, :tid, :vid, :ven, :descr, :addr, :cost, :dategiven)
+        ON DUPILCATE KEY UPDATE maintenance_type_id=VALUES(tid), vehicle_id=VALUES(vid), maintenance_vendor=VALUES(ven),
+            maintenance_description=VALUES(descr), maintenance_vendor_address=VALUES(addr), maintenance_cost=VALUES(cost),
+            maintenance_date=VALUES(dategiven)';
+    $statement = $db->prepare($query);
+    $statement->bindParam(":id", $id, PDO::PARAM_INT);
+    $statement->bindParam(":tid", $typeID, PDO::PARAM_INT);
+    $statement->bindParam(":vid", $vehicleID, PDO::PARAM_INT);
+    $statement->bindParam(":ven", $maintenacneVendor, PDO::PARAM_STR);
+    $statement->bindParam(":descr", $desc, PDO::PARAM_STR);
+    $statement->bindParam(":addr", $vendorAddress, PDO::PARAM_STR); 
+    $statement->bindParam(":cost", $cost);
+    $statement->bindParam(":dategiven", $date, PDO::PARAM_STR);
+    $statement->execute();
+    $statement->closeCursor();
+ }
+
  // MODIFY
 
  
