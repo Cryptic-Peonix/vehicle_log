@@ -18,9 +18,11 @@ include 'header.php';
 
 // setup table
 $tableOption = "fuel"; // default option
-if (isset($_POST["tablesubmit"])) {
-	$tableOption = $_POST["table_select"];
+echo $_POST['table_select'];
+if (isset($_POST['table_select'])) {
+	$tableOption = $_POST['table_select'];
 }
+echo 'var: ' . $tableOption;
 $table = get_table($tableOption);
 // get the table header names
 $headerNames = $table ? array_keys($table[0]) : [];
@@ -29,16 +31,15 @@ $headerNames = $table ? array_keys($table[0]) : [];
 <body>
 	<div class="selector">
 		<h1>Table Selector</h1>
-		<form method="POST">
+		<form method="POST" id="viewtable" >
 			<label for="table_select">Table:</label>
-			<select name="table_select" id="table_select">
-				<option value="fuel">Fuel</option>
-				<option value="vehicles">Vehicles</option>
-				<option value="maintenance">Maintenance</option>
-				<option value="maintenance_type">Maintenance Types</option>
-				<option value="users">Users</option>
+			<select name="table_select" id="table_select" onchange='this.form.submit()'>
+				<option value="fuel" <?php if ($tableOption == 'fuel') echo ' selected="selected"'; ?>>Fuel</option>
+				<option value="vehicles" <?php if ($tableOption == 'vehicles') echo ' selected="selected"'; ?>>Vehicles</option>
+				<option value="maintenance" <?php if ($tableOption == 'maintenance') echo ' selected="selected"'; ?>>Maintenance</option>
+				<option value="maintenance_type" <?php if ($tableOption == 'maintenance_type') echo ' selected="selected"'; ?>>Maintenance Types</option>
+				<option value="users" <?php if ($tableOption == 'users') echo ' selected="selected"'; ?>>Users</option>
 			</select>
-			<input type="submit" name="tablesubmit" value="Switch">
 		</form>
 		<br>
 		<h2><?php echo strtoupper($tableOption); ?> </h2>
