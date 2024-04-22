@@ -1,0 +1,33 @@
+<html>
+    <head charset="utf-8">
+        <title>Vehicle Log Register</title>
+        <link rel="stylesheet" href="./main.css">
+    </head>
+    <body>
+        <div class="login">
+            <h1>Register For An Account!</h1>
+            <br>
+            <form action="./auth/register.php" method="post">
+                <h3>Please enter your information below:</h3>
+                <br>
+                <label for="username">
+                    <h3>Username: </h3>
+                </label>
+                <input type="text" name="username" placeholder="Username" id="username" required>
+                <br>
+                <label for="password">
+                    <h3>Password: </h3>
+                </label>
+                <input type="password" name="password" placeholder="Password" id="password" required>
+                <br>
+                <label for="email">
+                    <h3>Email:</h3>
+                </label>
+                <input type="email" name="email" placeholder="Email" id="email" required>
+                <br>
+                <br>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

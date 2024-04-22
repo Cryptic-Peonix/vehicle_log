@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<!--
-Skyla Clark
-3/18/2024
-table_viewer.php
-The table viewer. The end user selects a table from the drop down list and the info
-for said table is displayed for the user.
--->
 <?php
-// get required files
-require('config.php');
-require('queries.php');
+/**
+ * Skyla Clark
+* 3/18/2024
+* table_viewer.php
+* The table viewer. The end user selects a table from the drop down list and the info
+* for said table is displayed for the user.
+ */
 
+// get required files
+require('./model/queries.php');
 //setup header
 $pageTitle = 'Vehicle Log';
-include 'header.php';
+include './view/header.php';
 
 // setup table
 $tableOption = "fuel"; // default option
@@ -73,6 +70,6 @@ $headerNames = $table ? array_keys($table[0]) : [];
 		</form>
 	</div>
 </body>
-<?php include 'footer.php'; ?>
+<?php include './view/footer.php'; ?>
 
 </html>

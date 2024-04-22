@@ -38,6 +38,9 @@ h4 {
 h1, h2, h3 {
     color: firebrick;
 }
+h1.title {
+    float: left;
+}
 ul {
     margin: 0 0 .5em 0;
     padding: 0 0 0 2.5em;
@@ -120,4 +123,20 @@ table tr th:first-child {
 table tr td:last-child,
 table tr th:last-child {
     border-right: 0;
+}
+a.button {
+    padding: 1px 6px;
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    color: buttontext;
+    background-color: buttonface;
+    text-decoration: none;
+    border-spacing: 5px;
+    float: right;
+    margin: 2.5% .5%;
+    font-size: 75%;
+}
+h4.username {
+    float: right;
+    margin: 2.5% .5%;
 }

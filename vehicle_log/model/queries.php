@@ -4,6 +4,8 @@
  * queries.php
  * This file stores all the functions for database queries.
  */
+require './model/config.php';
+$db = Database::getDB();
 
  // SELECT
  function get_table($tablename) {
@@ -59,34 +61,7 @@
 
  
  // Delete a row from a table based on a given table name and ID number.
- function delete_table_entry($table, $id) {
-    $id_name = "";
-    switch ($table) {
-        case "fuel":
-            $id_name = "fuel_id";
-            break;
-        case "maintenance":
-            $id_name = "maintenance_id";
-            break;
-        case "maintenance_type":
-            $id_name = "maintenance_type_id";
-            break;
-        case "users":
-            $id_name = "user_id";
-            break;
-        case "vehicles":
-            $id_name = "vehicle_id";
-            break;
-        // in case of invalid input, default to the fuels table
-        default:
-            $id_name = "fuel_id";
-            break;
-    }
-    global $db;
-    $query = "DELETE FROM {$table} WHERE {$id_name} = {$id}";
-    $statement = $db->prepare($query);
-    $statement->execute();
-    $statement->closeCursor();
- }
+
+
 
 ?>

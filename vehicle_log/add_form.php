@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php 
 /** Skyla Clark
  * 3/18/2024

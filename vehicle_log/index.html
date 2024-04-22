@@ -1,0 +1,37 @@
+<html>
+    <head charset="utf-8">
+        <title>Vehicle Log Login</title>
+        <link rel="stylesheet" href="./main.css">
+    </head>
+    <body>
+        <div class="login">
+            <h1>Login</h1>
+            <br>
+            <h2>Normal User: cpt283, webapps</h2>
+            <h2>Admin user: admin, webappsadmin</h2>
+            <br>
+            <form action="./auth/auth.php" method="post">
+                <h3>Please log in to continue!</h3>
+                <br>
+                <label for="username">
+                    <h3>Username: </h3>
+                </label>
+                <input type="text" name="username" placeholder="Username" id="username" required>
+                <br>
+                <label for="password">
+                    <h3>Password: </h3>
+                </label>
+                <input type="password" name="password" placeholder="Password" id="password" required>
+                <br>
+                <br>
+                <input type="submit" value="Login">
+            </form>
+            <br>
+            <hr width="100%" color="#CD9083"></hr>
+            <form action="signup.html" method="post">
+                <h3>No Account?</h3>
+                <input type="submit" value="Sign-Up">
+            </form>
+        </div>
+    </body>
+</html>

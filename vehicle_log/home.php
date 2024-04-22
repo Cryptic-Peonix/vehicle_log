@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-    $pageTitle = "Welcome!"
+    $pageTitle = "Welcome!";
+    include './view/header.php';
 ?>
-<?php include 'header.php'; ?>
 <body>
     <div class="main">
         <h1>CPT-283 Final Project - Vehicle Log</h1>
@@ -16,5 +14,5 @@
         <h4>Please navigate using the navbar at the top of the site!</h4>
     </div>
 </body>
-<?php include 'footer.php'; ?>
+<?php include './view/footer.php'; ?>
 </html>
