@@ -52,6 +52,10 @@ $headerNames = $table ? array_keys($table[0]) : [];
 					<th><p><?php echo strtoupper(str_replace("_", " ", $name)); ?></p></th>
 				<?php endforeach; ?>
 				<th>Edit (Perms Requried)</th>
+				<?php if ($_SESSION['adminStatus'] == 1) {
+					echo '<th>Delete</th>';
+				}
+				?>
 			</tr>
 			<!-- Loop through returned table array and display data -->
 			<?php foreach ($table as $row) : ?>
@@ -59,12 +63,20 @@ $headerNames = $table ? array_keys($table[0]) : [];
 					<?php foreach ($row as $key => $value) : ?>
 						<?php if (str_contains($key, 'active')) {continue;} ?>
 						<td><p><?php echo $value; ?></p></td>
+						<!-- maybe can use to fetch ids for edit and delete? need to figure out a way to pass id to the two post forms  -->
+						<input type="hidden" name="<?php echo $key; ?> value="<?php echo $value; ?>> 
 					<?php endforeach; ?>
 					<form action="edit_form.php" method="POST">
 						<?php if ($tableOption != 'users' || $_SESSION['adminStatus'] == 1) {
 							echo '<td><input type="submit" name="editsubmit" value="EDIT"></td>';
 						}
 						?>
+					</form>
+					<form action="delete_form.php" method="POST">
+					<?php if ($_SESSION['adminStatus'] == 1) {
+							echo '<td><input type="submit" name="deletesubmit" value="DELETE"></td>';
+						}
+					?>
 					</form>
 				</tr>
 			<?php endforeach; ?>
