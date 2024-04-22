@@ -83,6 +83,69 @@ function get_table($tablename) {
 
  
  // DELETE
+function disable_fuel(int $id) {
+   global $db;
+   $active = 0;
+   $query = "UPDATE fuel
+      SET active = :active
+      WHERE fuel_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
 
+function disable_maintenance(int $id) {
+   global $db;
+   $active = 0;
+   $query = "UPDATE maintenance
+      SET active = :active
+      WHERE maintenance_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
+function disable_maintenance_type(int $id) {
+   global $db;
+   $active = 0;
+   $query = "UPDATE maintenance_type
+      SET active = :active
+      WHERE maintenance_type_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
+function disable_user(int $id) {
+   global $db;
+   $active = 0;
+   $query = "UPDATE users
+      SET active = :active
+      WHERE user_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
+function disable_vehicle(int $id) {
+   global $db;
+   $active = 0;
+   $query = "UPDATE vehicles
+      SET active = :active
+      WHERE vehicle_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
 
 ?>
