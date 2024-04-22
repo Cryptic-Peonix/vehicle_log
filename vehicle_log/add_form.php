@@ -28,12 +28,13 @@ $headerNames = $tableArr ? array_keys($tableArr[0]) : [];
         $operation = 'add';
         switch ($table) {
             case 'fuel':
-
                 include './view/fuel_form.php';
                 break;
-            
+            case 'maintenance':
+                include './view/maintenance_form.php';
+                break;
             default:
-                # code...
+                echo 'invalid table value!';
                 break;
         }
     ?>

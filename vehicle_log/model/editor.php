@@ -21,7 +21,8 @@ try {
     
         }
         if ($table == 'maintenance') {
-    
+            add_maintenance_entry($_POST['type_id'], $_POST['vehicle_id'], $_POST['main_vendor'],
+                $_POST['main_desc'], $_POST['main_addr'], $_POST['main_cost'], $_POST['main_date']);
         }
         if ($table == 'maintenance_type') {
     
