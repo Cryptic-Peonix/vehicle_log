@@ -15,11 +15,9 @@ include './view/header.php';
 
 // setup table
 $tableOption = "fuel"; // default option
-echo $_POST['table_select'];
 if (isset($_POST['table_select'])) {
 	$tableOption = $_POST['table_select'];
 }
-echo 'var: ' . $tableOption;
 $table = get_table($tableOption);
 // get the table header names
 $headerNames = $table ? array_keys($table[0]) : [];
@@ -27,7 +25,7 @@ $headerNames = $table ? array_keys($table[0]) : [];
 
 <body>
 	<div class="selector">
-		<h1>Table Selector</h1>
+		<h1>Table Editor</h1>
 		<form method="POST" id="viewtable" >
 			<label for="table_select">Table:</label>
 			<select name="table_select" id="table_select" onchange='this.form.submit()'>
@@ -43,21 +41,27 @@ $headerNames = $table ? array_keys($table[0]) : [];
 	</div>
 	<div class="main">
 		<!-- Start table -->
-		<table>
+		<table class="results">
 			<!-- Add table headers -->
 			<tr>
 				<?php foreach ($headerNames as $name) : ?>
-					<th><?= strtoupper($name); ?></th>
+					<?php if($name == end($headerNames)) {break;} // skip the last row (active status) ?>
+					<th><p><?php echo strtoupper(str_replace("_", " ", $name)); ?></p></th>
 				<?php endforeach; ?>
+				<th>Edit (Perms Requried)</th>
 			</tr>
 			<!-- Loop through returned table array and display data -->
 			<?php foreach ($table as $row) : ?>
 				<tr>
-					<?php foreach ($row as $value) : ?>
-						<td><?= $value; ?></td>
+					<?php foreach ($row as $key => $value) : ?>
+						<?php if (str_contains($key, 'active')) {continue;} ?>
+						<td><p><?php echo $value; ?></p></td>
 					<?php endforeach; ?>
 					<form action="edit_form.php" method="POST">
-						<td><input type="submit" name="editsubmit" value="EDIT"></td>
+						<?php if ($tableOption != 'users' || $_SESSION['adminStatus'] == 1) {
+							echo '<td><input type="submit" name="editsubmit" value="EDIT"></td>';
+						}
+						?>
 					</form>
 				</tr>
 			<?php endforeach; ?>

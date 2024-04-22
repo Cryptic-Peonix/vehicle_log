@@ -4,12 +4,14 @@
  * add_form.php
  * Page to add entries into a table.
  */
-require('config.php');
-require('queries.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+require('./model/queries.php');
 
 //header
 $pageTitle = "Add Form";
-include 'header.php';
+include './view/header.php';
 
 // fetch table name from POST
 $table = "";
@@ -22,18 +24,19 @@ $headerNames = $tableArr ? array_keys($tableArr[0]) : [];
 <body>
     <h1>Table: <?php echo strtoupper($table); ?></h1>
     <!-- Create table form to add data -->
-    <form method="post">
-        <table>
-			<?php foreach ($headerNames as $name) : ?>
-				<tr>
-                    <th><?= strtoupper($name); ?></th>
-                    <td><input type="text" name="<?php echo $name; ?>"></td>
-                </tr>
-			<?php endforeach; ?>
-        </table>
-        <br>
-        <input type="submit" value="Add to table">
-    </form>
+    <?php
+        $operation = 'add';
+        switch ($table) {
+            case 'fuel':
+
+                include './view/fuel_form.php';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+    ?>
 </body>
-<?php include 'footer.php'; ?>
+<?php include './view/footer.php'; ?>
 </html>

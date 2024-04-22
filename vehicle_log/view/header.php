@@ -15,8 +15,8 @@
     <br>
     <hr>
     <div class="topnav">
-        <a <?php if($_SERVER['SCRIPT_NAME']=="/index.php") { ?> class="active" <?php } ?> href="./home.php">Home</a>
-        <a <?php if($_SERVER['SCRIPT_NAME']=="/table_viewer.php") { ?> class="active" <?php } ?> href="./table_viewer.php">Table Viewer</a>
+        <a <?php if($_SERVER['SCRIPT_NAME']=="/vehicle_log/home.php") { ?> class="active" <?php } ?> href="./home.php">Home</a>
+        <a <?php if($_SERVER['SCRIPT_NAME']=="/vehicle_log/table_viewer.php") { ?> class="active" <?php } ?> href="./table_viewer.php">Table Editor</a>
     </div>
     <hr>
 </head>
