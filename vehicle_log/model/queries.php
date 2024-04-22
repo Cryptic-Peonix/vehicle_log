@@ -10,8 +10,12 @@ $db = Database::getDB();
  // SELECT
 function get_table($tablename) {
    global $db;
-   $query = $query = 'SELECT * FROM ' . $tablename;
+   $active = 1;
+   $query = $query = 'SELECT * 
+      FROM ' . $tablename . 
+      ' WHERE active = :active'; //only get active entries
    $statement = $db->prepare($query);
+   $statement->bindParam(":active", $active);
    $statement->execute();
    $results = $statement->fetchAll();
    $statement->closeCursor();
@@ -19,11 +23,11 @@ function get_table($tablename) {
    return $results;
 }
 
- // ADD
+ // INSERT
  function add_fuel_entry(int $vehicle_id, string $source, int $gallons, $cost, $mileage) {
     global $db;
     $active = 1;
-    $query = 'INSERT INTO fuel (vehicle_id, fuel_source, fuel_gallons, fuel_cost, fuel_mileage, fuel_active)
+    $query = 'INSERT INTO fuel (vehicle_id, fuel_source, fuel_gallons, fuel_cost, fuel_mileage, active)
     VALUES (:vid, :source, :gallons, :cost, :miles, :active)';
     $statement = $db->prepare($query);
     $statement->bindParam(":vid", $vehicle_id, PDO::PARAM_INT);
@@ -54,11 +58,31 @@ function get_table($tablename) {
     $statement->closeCursor();
  }
 
- // MODIFY
+ function add_maintenance_type(string $type) {
+   global $db;
+   $active = 1;
+   $query = "INSERT INTO maintenance_type (maintenance_type, type_active
+      VALUES (:mtype, :active)";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":mtype", $type, PDO::PARAM_STR);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+ }
+
+ function add_user(string $firstname, string $lastName, string $password, string $email) {
+
+ }
+
+ function add_vehicle(string $vType, string $vModel, string $vYear, string $datePurcased, string $color, string $VIN, string $license,
+   string $state, $purcahsePrice, $currentPrice, $purchMileage, $currentMileage) {
+
+}
+
+ // UPDATE
 
  
  // DELETE
-
 
 
 ?>

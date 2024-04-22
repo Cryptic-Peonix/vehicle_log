@@ -6,6 +6,9 @@
 * The table viewer. The end user selects a table from the drop down list and the info
 * for said table is displayed for the user.
  */
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // get required files
 require('./model/queries.php');
