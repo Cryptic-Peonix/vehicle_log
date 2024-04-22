@@ -7,7 +7,7 @@ if(isset($_SESSION['discard_after']) && $now > $_SESSION['discard_after']) {
     session_start();
 }
 if(!isset($_SESSION['loggedin'])) {
-    header('Location: ../index.html');
+    header('Location: ../vehicle_log/index.html');
     exit;
 }
 ?>
