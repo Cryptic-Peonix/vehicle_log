@@ -88,7 +88,7 @@ function get_maintenance_type($id) {
    global $db;
    $active = 1;
    $query = "INSERT INTO users (first_name, last_name, user_password, email, active)
-      VALUES (:fname, :lname, :pass, :email, :active";
+      VALUES (:fname, :lname, :pass, :email, :active)";
    $statement = $db->prepare($query);
    $statement->bindParam(":fname", $firstname, PDO::PARAM_STR);
    $statement->bindParam(":lname", $lastName, PDO::PARAM_STR);

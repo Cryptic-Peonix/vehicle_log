@@ -51,7 +51,7 @@ try {
             add_maintenance_type($_POST['main_type']);
         }
         if ($table == 'users') {
-    
+            add_user($_POST['fname'], $_POST['lname'], password_hash($_POST['pwd'], PASSWORD_DEFAULT), $_POST['email']);
         }
     } else if ($operation == "update") {
         if ($table == 'fuel') {
