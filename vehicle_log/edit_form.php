@@ -29,6 +29,10 @@ if(isset($_POST["tablename"])) {
                 $type_id = $_POST['maintenance_type_id'];
                 include './view/maintenance_type_edit_form.php';
                 break;
+            case 'maintenance':
+                $maintenance_id = $_POST['maintenance_id'];
+                include './view/maintenance_edit_form.php';
+                break;
             default:
                 echo 'invalid table value!';
                 break;

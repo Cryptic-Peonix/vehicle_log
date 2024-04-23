@@ -9,7 +9,7 @@
                 <td><input type="text" name="lname" required></td>
             </tr>
             <tr>
-                <th>password:</th>
+                <th>Password:</th>
                 <td><input type="password" name="pwd" required></td>
             </tr>
             <tr>

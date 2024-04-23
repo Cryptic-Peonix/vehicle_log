@@ -61,7 +61,8 @@ try {
     
         }
         if ($table == 'maintenance') {
-            
+            edit_maintenance($maintenance_id, $_POST['type_id'], $_POST['vehicle_id'], $_POST['main_vendor'],
+                $_POST['main_desc'], $_POST['main_addr'], $_POST['main_cost'], $_POST['main_date']);
         }
         if ($table == 'maintenance_type') {
             edit_maintenance_type($type_id, $_POST['main_type']);
