@@ -55,7 +55,8 @@ try {
         }
     } else if ($operation == "update") {
         if ($table == 'fuel') {
-    
+            edit_fuel($fuel_id, $_POST["vehicle_id"], $_POST["fuel_source"], $_POST["fuel_gallons"],
+            $_POST["fuel_cost"], $_POST["fuel_mileage"]);
         }
         if ($table == 'vehicles') {
     

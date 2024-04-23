@@ -233,6 +233,22 @@ function edit_maintenance(int $id, int $typeID, int $vehicleID, string $maintena
    $statement->closeCursor();
 }
 
+function edit_fuel(int $id, int $vehicle_id, string $source, int $gallons, $cost, $mileage) {
+   global $db;
+   $query = "UPDATE fuel
+      SET vehicle_id = :vid, fuel_source = :source, fuel_gallons = :gallons, fuel_cost = :cost, fuel_mileage = :miles
+      WHERE fuel_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->bindParam(":vid", $vehicle_id, PDO::PARAM_INT);
+   $statement->bindParam(":source", $source, PDO::PARAM_STR);
+   $statement->bindParam(":gallons", $gallons, PDO::PARAM_INT);
+   $statement->bindParam(":cost", $cost);
+   $statement->bindParam(":miles", $mileage);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
 // DELETE
 function disable_fuel(int $id)
 {
