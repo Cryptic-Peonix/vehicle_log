@@ -23,6 +23,20 @@ function get_table($tablename) {
    return $results;
 }
 
+function get_maintenance_type($id) {
+   global $db;
+   $query = "SELECT *
+      FROM maintenance_type
+      WHERE maintenance_type_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $result = $statement->fetchAll();
+   $statement->closeCursor();
+
+   return $result[0];
+}
+
  // INSERT
  function add_fuel_entry(int $vehicle_id, string $source, int $gallons, $cost, $mileage) {
     global $db;
@@ -80,7 +94,17 @@ function get_table($tablename) {
 }
 
  // UPDATE
-
+function edit_maintenance_type(int $id, string $type) {
+   global $db;
+   $query = "UPDATE maintenance_type
+      SET maintenance_type = :mtype
+      WHERE maintenance_type_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":mtype", $type, PDO::PARAM_STR);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
+}
  
  // DELETE
 function disable_fuel(int $id) {

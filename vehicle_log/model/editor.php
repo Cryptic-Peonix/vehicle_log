@@ -60,10 +60,10 @@ try {
     
         }
         if ($table == 'maintenance') {
-    
+            
         }
         if ($table == 'maintenance_type') {
-    
+            edit_maintenance_type($type_id, $_POST['main_type']);
         }
         if ($table == 'users') {
             
