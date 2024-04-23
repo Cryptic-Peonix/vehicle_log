@@ -40,7 +40,8 @@ try {
                 $_POST["fuel_cost"], $_POST["fuel_mileage"]);
         }
         if ($table == 'vehicles') {
-    
+            add_vehicle($_POST['vtype'], $_POST['vmodel'], $_POST['vyear'], $_POST['dpurch'], $_POST['vcolor'],
+                $_POST['vin'], $_POST['vtag'], $_POST['vstate'], $_POST['pPrice'], $_POST['cPrice'], $_POST['pMiles'], $_POST['cMiles']);
         }
         if ($table == 'maintenance') {
             add_maintenance_entry($_POST['type_id'], $_POST['vehicle_id'], $_POST['main_vendor'],

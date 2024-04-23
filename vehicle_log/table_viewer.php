@@ -122,11 +122,13 @@ $headerNames = $table ? array_keys($table[0]) : [];
 			<?php endforeach; ?>
 		</table>
 		<br>
-		<form action="add_form.php" method="post">
-			<h3>Add to table</h3>
-			<input type="hidden" name="tablename" value="<?php echo $tableOption; ?>">
-			<input type="submit" value="ADD">
-		</form>
+		<?php if($tableOption != 'users' || $_SESSION['adminStatus'] == 1) : ?>
+			<form action="add_form.php" method="post">
+				<h3>Add to table</h3>
+				<input type="hidden" name="tablename" value="<?php echo $tableOption; ?>">
+				<input type="submit" value="ADD">
+			</form>
+		<?php endif; ?>
 	</div>
 </body>
 <?php include './view/footer.php'; ?>

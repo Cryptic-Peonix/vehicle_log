@@ -36,6 +36,9 @@ $headerNames = $tableArr ? array_keys($tableArr[0]) : [];
             case 'maintenance_type':
                 include './view/maintenance_type_form.php';
                 break;
+            case 'vehicles':
+                include './view/vehicle_form.php';
+                break;
             default:
                 echo 'invalid table value!';
                 break;

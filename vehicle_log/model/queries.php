@@ -85,12 +85,43 @@ function get_maintenance_type($id) {
  }
 
  function add_user(string $firstname, string $lastName, string $password, string $email) {
-
+   global $db;
+   $active = 1;
+   $query = "INSERT INTO users (first_name, last_name, user_password, email, active)
+      VALUES (:fname, :lname, :pass, :email, :active";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":fname", $firstname, PDO::PARAM_STR);
+   $statement->bindParam(":lname", $lastName, PDO::PARAM_STR);
+   $statement->bindParam(":pass", $password, PDO::PARAM_STR);
+   $statement->bindParam(":email", $email, PDO::PARAM_STR);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
  }
 
  function add_vehicle(string $vType, string $vModel, string $vYear, string $datePurcased, string $color, string $VIN, string $license,
-   string $state, $purcahsePrice, $currentPrice, $purchMileage, $currentMileage) {
-
+      string $state, $purcahsePrice, $currentPrice, $purchMileage, $currentMileage) {
+   global $db;
+   $active = 1;
+   $query = "INSERT INTO vehicles (vehicle_type, vehicle_model, vehicle_year, vehicle_date_purchased, vehicle_color, vehicle_VIN,
+      vehicle_license_tag, vehicle_license_state, vehicle_purchase_price, vehicle_current_price, vehicle_purchase_mileage, vehicle_current_mileage, active)
+      VALUES (:vtype, :vmodel, :vyear, :dpurch, :color, :vin, :license, :lstate, :purchPrice, :cPrice, :pMiles, :cMiles, :active)";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":vtype", $vType, PDO::PARAM_STR);
+   $statement->bindParam(":vmodel", $vModel, PDO::PARAM_STR);
+   $statement->bindParam(":vyear", $vYear, PDO::PARAM_INT);
+   $statement->bindParam(":dpurch", $datePurcased, PDO::PARAM_STR);
+   $statement->bindParam(":color", $color, PDO::PARAM_STR);
+   $statement->bindParam(":vin", $VIN, PDO::PARAM_STR);
+   $statement->bindParam(":license", $license, PDO::PARAM_STR);
+   $statement->bindParam(":lstate", $state, PDO::PARAM_STR);
+   $statement->bindParam(":purchPrice", $purcahsePrice);
+   $statement->bindParam(":cPrice", $currentPrice);
+   $statement->bindParam(":pMiles", $purchMileage);
+   $statement->bindParam(":cMiles", $currentMileage);
+   $statement->bindParam(":active", $active, PDO::PARAM_INT);
+   $statement->execute();
+   $statement->closeCursor();
 }
 
  // UPDATE
