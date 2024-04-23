@@ -146,6 +146,17 @@ a.button {
     margin: 1.8% .5%;
     font-size: 75%;
 }
+a.cancel {
+    padding: 1px 6px;
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    color: buttontext;
+    background-color: buttonface;
+    text-decoration: none;
+    border-spacing: 5px;
+    margin: 1.8% .5%;
+    font-size: 75%;
+}
 h4.username {
     float: right;
     margin: 1.8% .5%;

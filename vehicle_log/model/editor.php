@@ -10,6 +10,28 @@ require 'queries.php';
 $operation = $_POST['operation']; // add, update, or delete
 $table = $_POST['table']; // the table to perform said 
 
+// get ids when avaialble
+$fuel_id = 0;
+$vehicle_id = 0;
+$maintenance_id = 0;
+$type_id = 0;
+$user_id = 0;
+if (isset($_POST['fuel_id'])) {
+    $fuel_id = $_POST['fuel_id'];
+}
+if (isset($_POST['vehicle_id'])) {
+    $vehicle_id = $_POST['vehicle_id'];
+}
+if (isset($_POST['maintenance_id'])) {
+    $maintenance_id = $_POST['maintenance_id'];
+}
+if (isset($_POST['maintenance_type_id'])) {
+    $type_id = $_POST['maintenance_type_id'];
+}
+if (isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
+}
+
 try {
     // im using prepared statements, do not need to use htmlspecialchars
     if ($operation == "add") {
@@ -46,21 +68,21 @@ try {
         if ($table == 'users') {
             
         }
-    } else { // delete operations
+    } else if ($operation = "delete") { // delete operations
         if ($table == 'fuel') {
-    
+            disable_fuel($fuel_id);
         }
         if ($table == 'vehicles') {
-    
+            disable_vehicle($vehicle_id);
         }
         if ($table == 'maintenance') {
-    
+            disable_maintenance($maintenance_id);
         }
         if ($table == 'maintenance_type') {
-    
+            disable_maintenance_type($type_id);
         }
         if ($table == 'users') {
-            
+            disable_user($user_id);
         }
     }
 } catch (Exception $e) {

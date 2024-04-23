@@ -1,10 +1,11 @@
 <?php
+
 /**
  * Skyla Clark
-* 3/18/2024
-* table_viewer.php
-* The table viewer. The end user selects a table from the drop down list and the info
-* for said table is displayed for the user.
+ * 3/18/2024
+ * table_viewer.php
+ * The table viewer. The end user selects a table from the drop down list and the info
+ * for said table is displayed for the user.
  */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -29,7 +30,7 @@ $headerNames = $table ? array_keys($table[0]) : [];
 <body>
 	<div class="selector">
 		<h1>Table Editor</h1>
-		<form method="POST" id="viewtable" >
+		<form method="POST" id="viewtable">
 			<label for="table_select">Table:</label>
 			<select name="table_select" id="table_select" onchange='this.form.submit()'>
 				<option value="fuel" <?php if ($tableOption == 'fuel') echo ' selected="selected"'; ?>>Fuel</option>
@@ -48,10 +49,15 @@ $headerNames = $table ? array_keys($table[0]) : [];
 			<!-- Add table headers -->
 			<tr>
 				<?php foreach ($headerNames as $name) : ?>
-					<?php if($name == end($headerNames)) {break;} // skip the last row (active status) ?>
-					<th><p><?php echo strtoupper(str_replace("_", " ", $name)); ?></p></th>
+					<?php if ($name == end($headerNames)) {
+						break;
+					} // skip the last row (active status) 
+					?>
+					<th>
+						<p><?php echo strtoupper(str_replace("_", " ", $name)); ?></p>
+					</th>
 				<?php endforeach; ?>
-				<th>Edit (Perms Requried)</th>
+				<th><p>Edit (Perms Requried)</p></th>
 				<?php if ($_SESSION['adminStatus'] == 1) {
 					echo '<th>Delete</th>';
 				}
@@ -61,22 +67,56 @@ $headerNames = $table ? array_keys($table[0]) : [];
 			<?php foreach ($table as $row) : ?>
 				<tr>
 					<?php foreach ($row as $key => $value) : ?>
-						<?php if (str_contains($key, 'active')) {continue;} ?>
-						<td><p><?php echo $value; ?></p></td>
-						<!-- maybe can use to fetch ids for edit and delete? need to figure out a way to pass id to the two post forms  -->
-						<input type="hidden" name="<?php echo $key; ?> value="<?php echo $value; ?>> 
+						<?php if (str_contains($key, 'active')) {
+							continue;
+						} ?>
+						<td>
+							<p><?php echo $value; ?></p>
+						</td>
 					<?php endforeach; ?>
 					<form action="edit_form.php" method="POST">
 						<?php if ($tableOption != 'users' || $_SESSION['adminStatus'] == 1) {
+							if (isset($row['fuel_id'])) {
+								echo '<input type="hidden" name="fuel_id" value="' . $row['fuel_id'] . '">';
+							}
+							if (isset($row['vehicle_id'])) {
+								echo '<input type="hidden" name="vehicle_id" value="' . $row['vehicle_id'] . '">';
+							}
+							if (isset($row['maintenance_id'])) {
+								echo '<input type="hidden" name="maintenance_id" value="' . $row['maintenance_id'] . '">';
+							}
+							if (isset($row['maintenance_type_id'])) {
+								echo '<input type="hidden" name="maintenance_type_id" value="' . $row['maintenance_type_id'] . '">';
+							}
+							if (isset($row['user_id'])) {
+								echo '<input type="hidden" name="user_id" value="' . $row['user_id'] . '">';
+							}
+							echo '<input type="hidden" name="tablename" value="' . $tableOption . '">';
 							echo '<td><input type="submit" name="editsubmit" value="EDIT"></td>';
 						}
 						?>
 					</form>
 					<form action="delete_form.php" method="POST">
-					<?php if ($_SESSION['adminStatus'] == 1) {
+						<?php if ($_SESSION['adminStatus'] == 1) {
+							if (isset($row['fuel_id'])) {
+								echo '<input type="hidden" name="fuel_id" value="' . $row['fuel_id'] . '">';
+							}
+							if (isset($row['vehicle_id'])) {
+								echo '<input type="hidden" name="vehicle_id" value="' . $row['vehicle_id'] . '">';
+							}
+							if (isset($row['maintenance_id'])) {
+								echo '<input type="hidden" name="maintenance_id" value="' . $row['maintenance_id'] . '">';
+							}
+							if (isset($row['maintenance_type_id'])) {
+								echo '<input type="hidden" name="maintenance_type_id" value="' . $row['maintenance_type_id'] . '">';
+							}
+							if (isset($row['user_id'])) {
+								echo '<input type="hidden" name="user_id" value="' . $row['user_id'] . '">';
+							}
+							echo '<input type="hidden" name="tablename" value="' . $tableOption . '">';
 							echo '<td><input type="submit" name="deletesubmit" value="DELETE"></td>';
 						}
-					?>
+						?>
 					</form>
 				</tr>
 			<?php endforeach; ?>
