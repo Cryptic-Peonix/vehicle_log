@@ -43,7 +43,7 @@ function get_table($tablename) {
  function add_maintenance_entry(int $typeID, int $vehicleID, string $maintenacneVendor, string $desc, string $vendorAddress, float $cost, string $date) {
     global $db;
     $active = 1;
-    $query = 'INSERT INTO maintenance (maintenance_type_id, vehicle_id, maintenance_vendor, maintenance_description, maintenance_vendor_address, maintenance_cost, maintenance_date, maintenance_active)
+    $query = 'INSERT INTO maintenance (maintenance_type_id, vehicle_id, maintenance_vendor, maintenance_description, maintenance_vendor_address, maintenance_cost, maintenance_date, active)
         VALUES (:tid, :vid, :ven, :descr, :addr, :cost, :dategiven, :active)';
     $statement = $db->prepare($query);
     $statement->bindParam(":tid", $typeID, PDO::PARAM_INT);
@@ -61,7 +61,7 @@ function get_table($tablename) {
  function add_maintenance_type(string $type) {
    global $db;
    $active = 1;
-   $query = "INSERT INTO maintenance_type (maintenance_type, type_active
+   $query = "INSERT INTO maintenance_type (maintenance_type, active)
       VALUES (:mtype, :active)";
    $statement = $db->prepare($query);
    $statement->bindParam(":mtype", $type, PDO::PARAM_STR);

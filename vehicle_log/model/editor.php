@@ -47,7 +47,7 @@ try {
                 $_POST['main_desc'], $_POST['main_addr'], $_POST['main_cost'], $_POST['main_date']);
         }
         if ($table == 'maintenance_type') {
-    
+            add_maintenance_type($_POST['main_type']);
         }
         if ($table == 'users') {
     
