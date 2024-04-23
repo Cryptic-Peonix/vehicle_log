@@ -37,6 +37,14 @@ if(isset($_POST["tablename"])) {
                 $fuel_id = $_POST['fuel_id'];
                 include './view/fuel_edit_form.php';
                 break;
+            case 'users':
+                $user_id = $_POST['user_id'];
+                include './view/user_edit_form.php';
+                break;
+            case 'vehicles':
+                $vehicle_id = $_POST['vehicle_id'];
+                include './view/vehicle_edit_form.php';
+                break;
             default:
                 echo 'invalid table value!';
                 break;

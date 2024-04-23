@@ -57,7 +57,7 @@ function get_maintenance($id) {
 function get_user($id) {
    global $db;
    $query = "SELECT *
-      FROM user
+      FROM users
       WHERE user_id = :id";
    $statement = $db->prepare($query);
    $statement->bindParam(":id", $id, PDO::PARAM_INT);
@@ -71,7 +71,7 @@ function get_user($id) {
 function get_vehicle($id) {
    global $db;
    $query = "SELECT *
-      FROM vehicle
+      FROM vehicles
       WHERE vehicle_id = :id";
    $statement = $db->prepare($query);
    $statement->bindParam(":id", $id, PDO::PARAM_INT);
@@ -245,6 +245,58 @@ function edit_fuel(int $id, int $vehicle_id, string $source, int $gallons, $cost
    $statement->bindParam(":gallons", $gallons, PDO::PARAM_INT);
    $statement->bindParam(":cost", $cost);
    $statement->bindParam(":miles", $mileage);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
+function edit_user(int $id, string $firstname, string $lastName, string $password, string $email) {
+   global $db;
+   $query = "UPDATE users
+      SET first_name = :fname, last_name = :lname, user_password = :pass, email = :email
+      WHERE user_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->bindParam(":fname", $firstname, PDO::PARAM_STR);
+   $statement->bindParam(":lname", $lastName, PDO::PARAM_STR);
+   $statement->bindParam(":pass", $password, PDO::PARAM_STR);
+   $statement->bindParam(":email", $email, PDO::PARAM_STR);
+   $statement->execute();
+   $statement->closeCursor();
+}
+
+function edit_vehicle(int $id, string $vType,
+string $vModel,
+string $vYear,
+string $datePurcased,
+string $color,
+string $VIN,
+string $license,
+string $state,
+$purcahsePrice,
+$currentPrice,
+$purchMileage,
+$currentMileage
+) {
+   global $db;
+   $query = "UPDATE vehicles
+      SET vehicle_type = :vtype, vehicle_model = :vmodel, vehicle_year = :vyear, vehicle_date_purchased = :dpurch, vehicle_color = :color,
+         vehicle_VIN = :vin, vehicle_license_tag = :license, vehicle_license_state = :lstate, vehicle_purchase_price = :purchPrice,
+         vehicle_current_price = :cPrice, vehicle_purchase_mileage = :pMiles, vehicle_current_mileage = :cMiles
+      WHERE vehicle_id = :id";
+   $statement = $db->prepare($query);
+   $statement->bindParam(":id", $id, PDO::PARAM_INT);
+   $statement->bindParam(":vtype", $vType, PDO::PARAM_STR);
+   $statement->bindParam(":vmodel", $vModel, PDO::PARAM_STR);
+   $statement->bindParam(":vyear", $vYear, PDO::PARAM_INT);
+   $statement->bindParam(":dpurch", $datePurcased, PDO::PARAM_STR);
+   $statement->bindParam(":color", $color, PDO::PARAM_STR);
+   $statement->bindParam(":vin", $VIN, PDO::PARAM_STR);
+   $statement->bindParam(":license", $license, PDO::PARAM_STR);
+   $statement->bindParam(":lstate", $state, PDO::PARAM_STR);
+   $statement->bindParam(":purchPrice", $purcahsePrice);
+   $statement->bindParam(":cPrice", $currentPrice);
+   $statement->bindParam(":pMiles", $purchMileage);
+   $statement->bindParam(":cMiles", $currentMileage);
    $statement->execute();
    $statement->closeCursor();
 }

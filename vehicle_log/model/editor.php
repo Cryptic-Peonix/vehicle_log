@@ -59,7 +59,8 @@ try {
             $_POST["fuel_cost"], $_POST["fuel_mileage"]);
         }
         if ($table == 'vehicles') {
-    
+            edit_vehicle($vehicle_id, $_POST['vtype'], $_POST['vmodel'], $_POST['vyear'], $_POST['dpurch'], $_POST['vcolor'],
+            $_POST['vin'], $_POST['vtag'], $_POST['vstate'], $_POST['pPrice'], $_POST['cPrice'], $_POST['pMiles'], $_POST['cMiles']);
         }
         if ($table == 'maintenance') {
             edit_maintenance($maintenance_id, $_POST['type_id'], $_POST['vehicle_id'], $_POST['main_vendor'],
@@ -69,7 +70,7 @@ try {
             edit_maintenance_type($type_id, $_POST['main_type']);
         }
         if ($table == 'users') {
-            
+            edit_user($user_id, $_POST['fname'], $_POST['lname'], password_hash($_POST['pwd'], PASSWORD_DEFAULT), $_POST['email']);
         }
     } else if ($operation = "delete") { // delete operations
         if ($table == 'fuel') {
